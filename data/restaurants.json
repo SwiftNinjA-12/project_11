@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Swift's Pizza",
+    "address": "test",
+    "cuisine": "pizza",
+    "website": "https://www.pizza.com",
+    "description": "It's Awesome!!"
+  },
+  {
+    "name": "Ciccio Bean",
+    "address": "His chair",
+    "cuisine": "Anything goes",
+    "website": "https://ciccio.be",
+    "description": "For the picky eaters"
+  }
+]
