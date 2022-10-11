@@ -12,5 +12,12 @@
     "cuisine": "Anything goes",
     "website": "https://ciccio.be",
     "description": "For the picky eaters"
+  },
+  {
+    "name": "Fran's Palace",
+    "address": "Home",
+    "cuisine": "Yummy",
+    "website": "https://franspalace.be",
+    "description": "It's soooo good!!"
   }
 ]
