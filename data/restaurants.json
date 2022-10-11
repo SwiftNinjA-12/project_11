@@ -1,23 +1,30 @@
 [
-    {
-        "name": "Swift's Pizza",
-        "address": "test",
-        "cuisine": "pizza",
-        "website": "https://www.pizza.com",
-        "description": "It's Awesome!!"
-      },
-      {
-        "name": "Ciccio Bean",
-        "address": "His chair",
-        "cuisine": "Anything goes",
-        "website": "https://ciccio.be",
-        "description": "For the picky eaters"
-      },
-      {
-        "name": "Fran's Palace",
-        "address": "Home",
-        "cuisine": "Yummy",
-        "website": "https://franspalace.be",
-        "description": "It's soooo good!!"
-      }
+  {
+    "name": "Swift's Pizza",
+    "address": "test",
+    "cuisine": "pizza",
+    "website": "https://www.pizza.com",
+    "description": "It's Awesome!!"
+  },
+  {
+    "name": "Ciccio Bean",
+    "address": "His chair",
+    "cuisine": "Anything goes",
+    "website": "https://ciccio.be",
+    "description": "For the picky eaters"
+  },
+  {
+    "name": "Fran's Palace",
+    "address": "Home",
+    "cuisine": "Yummy",
+    "website": "https://franspalace.be",
+    "description": "It's soooo good!!"
+  },
+  {
+    "name": "smores",
+    "address": "1 address street",
+    "cuisine": "dessert",
+    "website": "https://smoressboof.com",
+    "description": "its great!"
+  }
 ]
