@@ -20,9 +20,8 @@
       <ul id="restaurants-list">
         <% for (const restaurant of restaurants){ %>
         <!-- writing JS code inside html  thanks to EJS. this open the for loop note single (})-->
-        <%- include('include/Restaurants/restaurant-item', {restaurant: restaurant}) %>
-
-        <% } %><!--this is the end of the for loop-->
+        <%- include('include/Restaurants/restaurant-item', {restaurant:
+        restaurant}) %> <% } %><!--this is the end of the for loop-->
       </ul>
       <% } %>
     </main>
