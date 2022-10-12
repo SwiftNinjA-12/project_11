@@ -73,5 +73,9 @@ app.get("/restaurants/:id", function (req, res) {
   }
   res.render('404');// this way this will run only after the for loop. easy simple page to show something went wrong
 });
+//make your own middelware - do this at the end so that it only reads after all the other requests. makes it faster to load etc.
+app.use(function(req, res){// create a function that is to be used all other requests that have not been handld (ie a typo in URL)
+  res.render('404');// if nothing has been rendered yet then render 404
+});
 
 app.listen(3000);
