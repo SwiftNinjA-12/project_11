@@ -51,8 +51,7 @@ router.get("/restaurants", function (req, res) {
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
     restaurants: storedRestaurants,
-    nextOrder: nextOrder,
-    order: order
+    nextOrder: nextOrder
   });
 });
 
