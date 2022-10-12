@@ -1,10 +1,9 @@
 const express = require("express");
 
-const resData = require('../util/restaurant-data') //use ../ to show that it is in a sub folder
+const resData = require("../util/restaurant-data"); //use ../ to show that it is in a sub folder
 
 const router = express.Router();
 const uuid = require("uuid");
-
 
 router.get("/confirm", function (req, res) {
   res.render("confirm");
@@ -25,11 +24,35 @@ router.post("/recommend", function (req, res) {
 });
 
 router.get("/restaurants", function (req, res) {
+  let order = req.query.order;
+  let nextOrder = 'desc';
+// this if gives order a value of asc
+  if (order !== "asc" && order !== "desc") {
+    order = "asc";
+  }
+  // this swaps the value of order and nextOrder, but how
+  if (order === 'desc') {
+    nextOrder = 'asc';
+  }
+
   const storedRestaurants = resData.getStoredRestaurants();
+    
+  storedRestaurants.sort(function (resA, resB) {
+    // this function sorts the restaurants alphabetically automatically
+    if (
+      (order === "asc" && resA.name > resB.name) ||
+      (order === "desc" && resB.name > resA.name)
+    ) {
+      return 1;
+    }
+    return -1;
+  });
 
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
     restaurants: storedRestaurants,
+    nextOrder: nextOrder,
+    order: order
   });
 });
 
@@ -49,6 +72,5 @@ router.get("/restaurants/:id", function (req, res) {
   }
   res.status(404).render("404"); // this way this will run only after the for loop. easy simple page to show something went wrong
 });
-
 
 module.exports = router;
