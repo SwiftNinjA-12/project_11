@@ -1,5 +1,6 @@
 [
   {
+    "id": "r1",
     "name": "Swift's Pizza",
     "address": "test",
     "cuisine": "pizza",
@@ -7,6 +8,7 @@
     "description": "It's Awesome!!"
   },
   {
+    "id": "r2",
     "name": "Ciccio Bean",
     "address": "His chair",
     "cuisine": "Anything goes",
@@ -14,6 +16,7 @@
     "description": "For the picky eaters"
   },
   {
+    "id": "r3",
     "name": "Fran's Palace",
     "address": "Home",
     "cuisine": "Yummy",
@@ -21,10 +24,19 @@
     "description": "It's soooo good!!"
   },
   {
+    "id": "r4",
     "name": "smores",
     "address": "1 address street",
     "cuisine": "dessert",
     "website": "https://smoressboof.com",
     "description": "its great!"
+  },
+  {
+    "name": "Gino Pasta",
+    "address": "Leiden",
+    "cuisine": "pasta",
+    "website": "https://pasta.nl",
+    "description": "COS PASTA!!",
+    "id": "157f74e9-b918-4f94-80d8-d2641e207e6d"
   }
 ]

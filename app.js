@@ -2,6 +2,7 @@ const fs = require("fs"); //file system in express
 const path = require("path"); //to be able to make paths in express
 
 const express = require("express");
+const uuid = require("uuid");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.get("/recommend", function (req, res) {
 app.post("/recommend", function (req, res) {
   //.post is for form submission
   const restaurant = req.body; //stores the body of the form overall. instead of req.body.name or req.body.website or other inputs. creates an object
+  restaurant.id = uuid.v4(); //check uuid documentatiuon to see the different methods. this step gives each entry a unique ID
   const filePath = path.join(__dirname, "data", "restaurants.json"); //gets the path for the json file
   const fileData = fs.readFileSync(filePath); //reads the file
   const storedRestaurants = JSON.parse(fileData); //converts file to JS array
@@ -53,6 +55,23 @@ app.get("/restaurants", function (req, res) {
     numberOfRestaurants: storedRestaurants.length,
     restaurants: storedRestaurants,
   });
+});
+
+app.get("/restaurants/:id", function (req, res) {
+  //dynamic placeholder for dynamic URLs
+  const restaurantId = req.params.id; // the ID here in the params object of the request has the property ot the ID that we put in '/restaurants/:id'
+  const filePath = path.join(__dirname, "data", "restaurants.json");
+  const fileData = fs.readFileSync(filePath);
+  const storedRestaurants = JSON.parse(fileData);//converts to JS array [storedRestaurants]
+  
+  for (const arrayIndex of storedRestaurants) { //runs through each part of the array
+    if (arrayIndex.id === restaurantId) {   //checks if the id of the clicked link === the id in the array => to get the other details
+      return res.render("restaurant-details", { restaurant: arrayIndex });// returns and runs the dynamic website "restaurant-details". 
+      // { restaurant: restaurant }) => the restaurant is the link to <%= restaurant.xyz %>
+      //arrayIndex in [for(const arrayIndex of storedRestaurants)]
+    }// dont use else for error messages 404 as there are plenty more (arrayIndex.id !=== restaurantId) so it might give back a error too soon.
+  }
+  res.render('404');// this way this will run only after the for loop. easy simple page to show something went wrong
 });
 
 app.listen(3000);
