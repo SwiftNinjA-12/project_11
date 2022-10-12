@@ -3,6 +3,8 @@ const path = require("path"); //to be able to make paths in express
 
 const express = require("express");
 const uuid = require("uuid");
+//adding your own js files - use path 
+const resData = require('./util/restaurant-data') //use ./ to show that it is in a sub folder
 
 const app = express();
 
@@ -38,20 +40,14 @@ app.post("/recommend", function (req, res) {
   //.post is for form submission
   const restaurant = req.body; //stores the body of the form overall. instead of req.body.name or req.body.website or other inputs. creates an object
   restaurant.id = uuid.v4(); //check uuid documentatiuon to see the different methods. this step gives each entry a unique ID
-  
-  const storedRestaurants = getStoredRestaurants();//see restaurant-data.js for explaination
-  
-  storedRestaurants.push(restaurant); //pushes new input object into array
-
-  storeRestaurants(storedRestaurants);//see restaurant-data.js for explaination
-  
+  const storedRestaurants = resData.getStoredRestaurants();//see restaurant-data.js for explaination
+  storedRestaurants.push(restaurant); //pushes new input object into arra
+  resData.storeRestaurants(storedRestaurants);//see restaurant-data.js for explaination
   res.redirect("/confirm"); //once data is submitted go to confirm page
 });
 
 app.get("/restaurants", function (req, res) {
-  const filePath = path.join(__dirname, "data", "restaurants.json");
-  const fileData = fs.readFileSync(filePath);
-  const storedRestaurants = JSON.parse(fileData);
+  const storedRestaurants = resData.getStoredRestaurants()
 
   res.render("restaurants", {
     numberOfRestaurants: storedRestaurants.length,
@@ -62,10 +58,8 @@ app.get("/restaurants", function (req, res) {
 app.get("/restaurants/:id", function (req, res) {
   //dynamic placeholder for dynamic URLs
   const restaurantId = req.params.id; // the ID here in the params object of the request has the property ot the ID that we put in '/restaurants/:id'
-  const filePath = path.join(__dirname, "data", "restaurants.json");
-  const fileData = fs.readFileSync(filePath);
-  const storedRestaurants = JSON.parse(fileData);//converts to JS array [storedRestaurants]
-  
+  const storedRestaurants = resData.getStoredRestaurants()  
+
   for (const arrayIndex of storedRestaurants) { //runs through each part of the array
     if (arrayIndex.id === restaurantId) {   //checks if the id of the clicked link === the id in the array => to get the other details
       return res.render("restaurant-details", { restaurant: arrayIndex });// returns and runs the dynamic website "restaurant-details". 
